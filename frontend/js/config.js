@@ -7,6 +7,6 @@
  *    (if the backend also serves the game, e.g. https://xxx.onrender.com, leave it empty)
  */
 window.AUTSERA_CONFIG = {
-  PRODUCTION_API_URL: '',          // e.g. 'https://autsera-land.onrender.com'   (no trailing slash)
+  PRODUCTION_API_URL: 'https://autsera-land.onrender.com',          // e.g. 'https://autsera-land.onrender.com'   (no trailing slash)
   LOCAL_API_PORT: 5000,
 };
