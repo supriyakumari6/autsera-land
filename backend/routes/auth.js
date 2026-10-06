@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
 
     if (!NAME_RE.test(name))
       return res.status(400).json({ error: 'Name must be 2–20 letters or numbers.' });
-    if (!age || age < 3 || age > 18)
+    if (!age || age < 2 || age > 8)
       return res.status(400).json({ error: 'Age must be between 3 and 18.' });
     if (password.length < 3 || password.length > 72)
       return res.status(400).json({ error: 'Password needs at least 3 characters.' });

@@ -14,7 +14,7 @@ const ScoreSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
   name:       { type: String, required: true, trim: true, maxlength: 20 },
   nameKey:    { type: String, unique: true, index: true },   // lower-cased name → unique, no regex needed
-  age:        { type: Number, min: 3, max: 18 },
+  age:        { type: Number, min: 2, max: 8 },
   password:   { type: String, required: true, minlength: 3 },
   avatar:     { emoji: String, name: String },
   scores:     { colors: { type: Number, default: 0 },

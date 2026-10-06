@@ -39,7 +39,7 @@ const Auth = (() => {
     const pass = document.getElementById('reg-pass').value.trim();
 
     if (!NAME_RE.test(name))         return showError('reg-error', '⚠️ Name must be 2–20 letters or numbers!');
-    if (!age || age < 3 || age > 18) return showError('reg-error', '⚠️ Please enter your age (3–18)!');
+    if (!age || age < 2 || age > 8) return showError('reg-error', '⚠️ Please enter your age (2–8)!');
     if (!pass || pass.length < 3)    return showError('reg-error', '⚠️ Password needs at least 3 characters!');
 
     _busy = true;
