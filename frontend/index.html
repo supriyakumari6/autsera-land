@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autsera Land 🌈</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ===== FLOATING BACKGROUND SHAPES ===== -->
+<div class="bg-shapes" aria-hidden="true">
+  <div class="bg-shape s1"></div>
+  <div class="bg-shape s2"></div>
+  <div class="bg-shape s3"></div>
+  <div class="bg-shape s4"></div>
+  <div class="bg-shape s5"></div>
+</div>
+
+<!-- ===== SOUND TOGGLE ===== -->
+<button id="soundToggle" class="sound-btn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
+
+<!-- ===== SCREENS WRAPPER ===== -->
+<div id="app">
+
+  <!-- ── SCREEN 1: SPLASH / HOME ── -->
+  <div class="screen active" id="screen-home">
+    <div class="home-content">
+      <div class="logo-area bounce-in">
+        <div class="logo-icon">🌈</div>
+        <h1 class="game-title">Autsera Land</h1>
+        <p class="game-subtitle">A magical place to learn & play!</p>
+      </div>
+      <div class="home-buttons slide-up">
+        <button class="btn btn-primary" onclick="App.goTo('screen-auth-choice')">🚀 Let's Play!</button>
+        <button class="btn btn-secondary" onclick="App.goTo('screen-parent-login')">👨‍👩‍👧 Parent Zone</button>
+      </div>
+      <div class="clouds" aria-hidden="true">
+        <span class="cloud c1">☁️</span>
+        <span class="cloud c2">☁️</span>
+        <span class="cloud c3">☁️</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 2: AUTH CHOICE ── -->
+  <div class="screen" id="screen-auth-choice">
+    <div class="screen-inner">
+      <button class="back-btn" onclick="App.goTo('screen-home')">← Back</button>
+      <h2 class="screen-title">Who are you? 😊</h2>
+      <div class="card-row">
+        <div class="choice-card" onclick="App.goTo('screen-login')">
+          <div class="choice-icon">👦</div>
+          <p>I already have an account!</p>
+        </div>
+        <div class="choice-card" onclick="App.goTo('screen-register')">
+          <div class="choice-icon">✨</div>
+          <p>I am new here!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 3: CHILD LOGIN ── -->
+  <div class="screen" id="screen-login">
+    <div class="screen-inner narrow">
+      <button class="back-btn" onclick="App.goTo('screen-auth-choice')">← Back</button>
+      <h2 class="screen-title">Welcome Back! 👋</h2>
+      <div class="form-group">
+        <label>Your Name 🏷️</label>
+        <input type="text" id="login-name" class="big-input" placeholder="Type your name..." />
+      </div>
+      <div class="form-group">
+        <label>Password 🔑</label>
+        <input type="password" id="login-pass" class="big-input" placeholder="Your secret password..." />
+      </div>
+      <button class="btn btn-primary full" onclick="Auth.login()">Let me in! 🎉</button>
+      <p class="form-note">Not you? <a href="#" onclick="App.goTo('screen-register')">Make a new account!</a></p>
+      <div id="login-error" class="error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 4: REGISTER ── -->
+  <div class="screen" id="screen-register">
+    <div class="screen-inner narrow">
+      <button class="back-btn" onclick="App.goTo('screen-auth-choice')">← Back</button>
+      <h2 class="screen-title">Join Autsera Land! 🌟</h2>
+      <div class="form-group">
+        <label>Your Name 🏷️</label>
+        <input type="text" id="reg-name" class="big-input" placeholder="What's your name?" />
+      </div>
+      <div class="form-group">
+        <label>Your Age 🎂</label>
+        <input type="number" id="reg-age" class="big-input" placeholder="How old are you?" min="3" max="18"/>
+      </div>
+      <div class="form-group">
+        <label>Password 🔑</label>
+        <input type="password" id="reg-pass" class="big-input" placeholder="Make a secret password..." />
+      </div>
+      <button class="btn btn-primary full" onclick="Auth.register()">Create My Account! 🎊</button>
+      <div id="reg-error" class="error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 5: AVATAR SELECTION ── -->
+  <div class="screen" id="screen-avatar">
+    <div class="screen-inner">
+      <h2 class="screen-title">Pick Your Avatar! 🎭</h2>
+      <p class="screen-sub">Who do you want to be today?</p>
+      <div class="avatar-grid" id="avatar-grid">
+        <!-- filled by JS -->
+      </div>
+      <button class="btn btn-primary" id="avatar-confirm-btn" onclick="Auth.confirmAvatar()" disabled>That's me! ✅</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 6: ACTIVITY SELECTION ── -->
+  <div class="screen" id="screen-activities">
+    <div class="screen-inner">
+      <div class="top-bar">
+        <div class="player-info" id="player-info"></div>
+        <button class="btn btn-small" onclick="App.goTo('screen-leaderboard'); Leaderboard.show('all')">🏆 Leaderboard</button>
+        <button class="btn btn-small btn-danger" onclick="Auth.logout()">Logout</button>
+      </div>
+      <h2 class="screen-title">What do you want to play? 🎮</h2>
+      <div class="activity-grid">
+        <div class="activity-card" onclick="Game.startActivity('colors')">
+          <div class="activity-icon">🎨</div>
+          <h3>Colors</h3>
+          <p>Find the right color!</p>
+          <div class="activity-stars" id="stars-colors">⭐⭐⭐</div>
+        </div>
+        <div class="activity-card" onclick="Game.startActivity('shapes')">
+          <div class="activity-icon">🔷</div>
+          <h3>Shapes</h3>
+          <p>Match the shapes!</p>
+          <div class="activity-stars" id="stars-shapes">⭐⭐⭐</div>
+        </div>
+        <div class="activity-card" onclick="Game.startActivity('memory')">
+          <div class="activity-icon">🧠</div>
+          <h3>Memory</h3>
+          <p>Flip and remember!</p>
+          <div class="activity-stars" id="stars-memory">⭐⭐⭐</div>
+        </div>
+        <div class="activity-card" onclick="Game.startActivity('objects')">
+          <div class="activity-icon">🐘</div>
+          <h3>Objects</h3>
+          <p>Find the right one!</p>
+          <div class="activity-stars" id="stars-objects">⭐⭐⭐</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 7: LEVEL SELECT ── -->
+  <div class="screen" id="screen-level-select">
+    <div class="screen-inner">
+      <button class="back-btn" onclick="App.goTo('screen-activities')">← Back</button>
+      <h2 class="screen-title" id="level-select-title">Choose Your Level</h2>
+      <div class="level-row">
+        <div class="level-card easy" onclick="Game.setLevel('easy')">
+          <div class="level-emoji">🌱</div>
+          <h3>Easy</h3>
+          <p>Great start!</p>
+        </div>
+        <div class="level-card medium" onclick="Game.setLevel('medium')">
+          <div class="level-emoji">🌟</div>
+          <h3>Medium</h3>
+          <p>Getting better!</p>
+        </div>
+        <div class="level-card hard" onclick="Game.setLevel('hard')">
+          <div class="level-emoji">🔥</div>
+          <h3>Hard</h3>
+          <p>Super challenge!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 8: GAME SCREEN ── -->
+  <div class="screen" id="screen-game">
+    <div class="game-header">
+      <button class="btn btn-small" onclick="Game.pause()" id="pause-btn">⏸ Pause</button>
+      <div class="game-stats">
+        <span id="stat-score">⭐ 0</span>
+        <span id="stat-lives">❤️❤️❤️</span>
+        <span id="stat-timer">⏱ 0s</span>
+      </div>
+      <button class="btn btn-small btn-danger" onclick="Game.exitGame()">🚪 Exit</button>
+    </div>
+    <div class="game-question" id="game-question"></div>
+    <div class="game-area" id="game-area">
+      <!-- dynamic game content injected here -->
+    </div>
+    <div class="game-feedback hidden" id="game-feedback"></div>
+  </div>
+
+  <!-- ── SCREEN 9: PAUSE ── -->
+  <div class="screen" id="screen-pause">
+    <div class="screen-inner narrow center-all">
+      <div class="pause-icon">⏸️</div>
+      <h2>Game Paused</h2>
+      <button class="btn btn-primary" onclick="Game.resume()">▶️ Continue</button>
+      <button class="btn btn-secondary" onclick="Game.restart()">🔄 Restart</button>
+      <button class="btn btn-danger" onclick="Game.exitGame()">🚪 Exit Game</button>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 10: SCORE / RESULT ── -->
+  <div class="screen" id="screen-score">
+    <div class="screen-inner narrow center-all">
+      <div id="score-animation" class="score-animation"></div>
+      <h2 id="score-title" class="score-title"></h2>
+      <div class="score-details" id="score-details"></div>
+      <div class="star-row" id="star-row"></div>
+      <div class="score-btn-row">
+        <button class="btn btn-primary" onclick="Game.playAgain()">🔄 Play Again!</button>
+        <button class="btn btn-secondary" onclick="App.goTo('screen-activities')">🏠 Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 11: LEADERBOARD ── -->
+  <div class="screen" id="screen-leaderboard">
+    <div class="screen-inner">
+      <button class="back-btn" onclick="App.goTo('screen-activities')">← Back</button>
+      <h2 class="screen-title">🏆 Autsera Land Leaderboard</h2>
+      <div class="leaderboard-tabs">
+        <button class="tab-btn active" onclick="Leaderboard.show('all')">All Games</button>
+        <button class="tab-btn" onclick="Leaderboard.show('colors')">🎨 Colors</button>
+        <button class="tab-btn" onclick="Leaderboard.show('shapes')">🔷 Shapes</button>
+        <button class="tab-btn" onclick="Leaderboard.show('memory')">🧠 Memory</button>
+        <button class="tab-btn" onclick="Leaderboard.show('objects')">🐘 Objects</button>
+      </div>
+      <div class="leaderboard-list" id="leaderboard-list"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 12: PARENT LOGIN ── -->
+  <div class="screen" id="screen-parent-login">
+    <div class="screen-inner narrow">
+      <button class="back-btn" onclick="App.goTo('screen-home')">← Back</button>
+      <h2 class="screen-title">👨‍👩‍👧 Parent Login</h2>
+      <div class="form-group">
+        <label>Parent Email 📧</label>
+        <input type="email" id="parent-email" class="big-input" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Password 🔑</label>
+        <input type="password" id="parent-pass" class="big-input" placeholder="Your password..." />
+      </div>
+      <button class="btn btn-primary full" onclick="ParentControl.login()">Enter Parent Zone 🔐</button>
+      <p class="form-note">New parent? <a href="#" onclick="App.goTo('screen-parent-register')">Register here</a></p>
+      <div id="parent-login-error" class="error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 13: PARENT REGISTER ── -->
+  <div class="screen" id="screen-parent-register">
+    <div class="screen-inner narrow">
+      <button class="back-btn" onclick="App.goTo('screen-parent-login')">← Back</button>
+      <h2 class="screen-title">Create Parent Account</h2>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="preg-name" class="big-input" placeholder="Your full name" />
+      </div>
+      <div class="form-group">
+        <label>Email 📧</label>
+        <input type="email" id="preg-email" class="big-input" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Password 🔑</label>
+        <input type="password" id="preg-pass" class="big-input" placeholder="Choose a password" />
+      </div>
+      <button class="btn btn-primary full" onclick="ParentControl.register()">Register 🎉</button>
+      <div id="preg-error" class="error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- ── SCREEN 14: PARENT DASHBOARD ── -->
+  <div class="screen" id="screen-parent-dashboard">
+    <div class="screen-inner">
+      <div class="top-bar">
+        <h2 class="screen-title no-margin">Parent Dashboard 📊</h2>
+        <button class="btn btn-small btn-danger" onclick="ParentControl.logout()">Logout</button>
+      </div>
+      <div class="parent-tabs">
+        <button class="tab-btn active" onclick="ParentControl.showTab('progress')">📈 Progress</button>
+        <button class="tab-btn" onclick="ParentControl.showTab('time-limit')">⏰ Time Limit</button>
+        <button class="tab-btn" onclick="ParentControl.showTab('children')">👧 Children</button>
+      </div>
+      <div id="parent-tab-content"></div>
+    </div>
+  </div>
+
+</div><!-- end #app -->
+
+<!-- ===== OVERLAY: REWARD ANIMATION ===== -->
+<div id="reward-overlay" class="reward-overlay hidden" aria-live="polite">
+  <div class="reward-content">
+    <div class="reward-emoji" id="reward-emoji"></div>
+    <div class="reward-text" id="reward-text"></div>
+  </div>
+</div>
+
+<!-- ===== OVERLAY: TIME LIMIT WARNING ===== -->
+<div id="time-warning" class="time-warning hidden">
+  <p>⏰ Your play time is almost up!</p>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/config.js"></script>
+<script src="js/utils/storage.js"></script>
+<script src="js/utils/escape.js"></script>
+<script src="js/utils/api.js"></script>
+<script src="js/utils/sound.js"></script>
+<script src="js/utils/speech.js"></script>
+<script src="js/utils/timer.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/leaderboard.js"></script>
+<script src="js/parentControl.js"></script>
+<script src="js/games/colors.js"></script>
+<script src="js/games/shapes.js"></script>
+<script src="js/games/memory.js"></script>
+<script src="js/games/objects.js"></script>
+<script src="js/game.js"></script>
+
+</body>
+</html>
