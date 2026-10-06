@@ -31,8 +31,8 @@
   --shadow-card: 0 8px 32px rgba(0,0,0,0.13);
   --shadow-btn:  0 4px 16px rgba(0,0,0,0.18);
 
-  --font-body:    'Nunito', sans-serif;
-  --font-display: 'Baloo 2', cursive;
+  --font-body:    'Inter', sans-serif;
+  --font-display: 'Manrope', sans-serif;
 
   --transition: 0.25s cubic-bezier(.4,0,.2,1);
 }
