@@ -82,3 +82,4 @@ const ColorGame = (() => {
 
   return { render, check };
 })();
+## colour
