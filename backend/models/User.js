@@ -1,6 +1,4 @@
-/**
- * models/User.js — Child user schema
- */
+
 const mongoose = require('mongoose');
 const bcrypt   = require('bcryptjs');
 
