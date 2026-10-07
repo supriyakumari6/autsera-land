@@ -1,6 +1,4 @@
-/**
- * games/shapes.js — Shape Matching Game
- */
+
 const ShapeGame = (() => {
 
   const SHAPES = [
