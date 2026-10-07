@@ -1,6 +1,4 @@
-/**
- * models/Parent.js — Parent/guardian schema
- */
+
 const mongoose = require('mongoose');
 const bcrypt   = require('bcryptjs');
 
