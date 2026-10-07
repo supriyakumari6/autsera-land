@@ -1,9 +1,4 @@
-/* =====================================================
-   AUTSERA LAND — main.css
-   Child-friendly, bright, accessible design
-===================================================== */
 
-/* ── GOOGLE FONTS already loaded in HTML ── */
 
 :root {
   --clr-sky:      #a8edff;
@@ -64,14 +59,14 @@ body {
 .s4 { width:260px; height:260px; background:var(--clr-mint);   bottom:-60px; left:35%; animation-delay:6s; }
 .s5 { width:130px; height:130px; background:var(--clr-pink);   top:20%; right:20%;    animation-delay:3s; }
 
-/* ── APP WRAPPER ── */
+
 #app {
   position: relative;
   z-index: 1;
   min-height: 100vh;
 }
 
-/* ── SCREENS ── */
+
 .screen {
   display: none;
   min-height: 100vh;
@@ -92,7 +87,7 @@ body {
 .screen-inner.narrow { max-width: 480px; }
 .screen-inner.center-all { text-align: center; }
 
-/* ── TYPOGRAPHY ── */
+
 .game-title {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 8vw, 5rem);
@@ -127,7 +122,7 @@ body {
   font-size: 1rem;
 }
 
-/* ── BUTTONS ── */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -154,7 +149,7 @@ body {
 .btn-small    { padding: 10px 20px; font-size: 0.9rem; border-radius: var(--radius-md); }
 .btn.full     { width: 100%; margin-top: 12px; }
 
-/* ── SOUND BUTTON ── */
+
 .sound-btn {
   position: fixed;
   top: 16px; right: 16px;
@@ -170,7 +165,7 @@ body {
 }
 .sound-btn:hover { transform: scale(1.12) rotate(-10deg); }
 
-/* ── BACK BUTTON ── */
+
 .back-btn {
   background: none;
   border: 2.5px solid var(--clr-purple);
@@ -186,7 +181,7 @@ body {
 }
 .back-btn:hover { background: var(--clr-purple); color: #fff; }
 
-/* ── HOME SCREEN ── */
+
 .home-content {
   display: flex;
   flex-direction: column;
@@ -205,7 +200,7 @@ body {
 .c2 { animation-delay: 2.5s; }
 .c3 { animation-delay: 5s; }
 
-/* ── AUTH / CHOICE CARDS ── */
+
 .card-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 .choice-card {
   background: linear-gradient(135deg, #fff 60%, #f0ebff);
@@ -222,7 +217,7 @@ body {
 .choice-icon { font-size: 3.5rem; display: block; margin-bottom: 12px; }
 .choice-card p { font-weight: 700; color: var(--clr-purple); font-size: 1rem; }
 
-/* ── FORMS ── */
+
 .form-group { margin-bottom: 18px; }
 .form-group label { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: var(--clr-dark); }
 .big-input {
@@ -244,7 +239,7 @@ body {
 .error-msg { background: #ffe0e0; color: var(--clr-danger); padding: 12px 16px; border-radius: var(--radius-md); margin-top: 10px; font-weight: 700; font-size: 0.95rem; }
 .hidden { display: none !important; }
 
-/* ── AVATAR GRID ── */
+
 .avatar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; margin-bottom: 24px; }
 .avatar-item {
   background: #f5f0ff;
@@ -260,11 +255,10 @@ body {
 .avatar-item .av-emoji { font-size: 3rem; display: block; }
 .avatar-item .av-name { font-size: 0.8rem; font-weight: 700; margin-top: 6px; color: var(--clr-purple); }
 
-/* ── TOP BAR ── */
+
 .top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
 .player-info { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1rem; flex: 1; }
 
-/* ── ACTIVITY GRID ── */
 .activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .activity-card {
   background: linear-gradient(145deg, #fff 60%, #f8f0ff);
@@ -282,7 +276,7 @@ body {
 .activity-card p  { font-size: 0.9rem; color: var(--clr-muted); }
 .activity-stars { font-size: 1.1rem; margin-top: 10px; }
 
-/* ── LEVEL SELECT ── */
+
 .level-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 .level-card {
   border-radius: var(--radius-xl);
@@ -303,7 +297,7 @@ body {
 .level-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
 .level-card p  { font-size: 0.9rem; opacity: 0.88; }
 
-/* ── GAME HEADER ── */
+
 .game-header {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between;
@@ -342,7 +336,7 @@ body {
   padding: 0 16px;
 }
 
-/* ── GAME FEEDBACK ── */
+
 .game-feedback {
   text-align: center;
   font-family: var(--font-display);
@@ -357,18 +351,16 @@ body {
 .game-feedback.correct { background: #d4fde8; color: var(--clr-success); }
 .game-feedback.wrong   { background: #ffe4e4; color: var(--clr-danger); }
 
-/* ── PAUSE SCREEN ── */
+
 .pause-icon { font-size: 5rem; margin-bottom: 20px; }
 .screen-inner.center-all .btn { margin: 8px auto; display: block; min-width: 220px; }
 
-/* ── SCORE SCREEN ── */
 .score-animation { font-size: 5rem; animation: bounceIn 0.6s cubic-bezier(.4,0,.2,1); margin-bottom: 12px; }
 .score-title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; margin-bottom: 16px; }
 .score-details { font-size: 1.15rem; line-height: 1.9; color: var(--clr-dark); margin-bottom: 20px; }
 .star-row { font-size: 2.8rem; margin-bottom: 24px; letter-spacing: 8px; }
 .score-btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-/* ── LEADERBOARD ── */
 .leaderboard-tabs, .parent-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
 .tab-btn {
   background: #f0ebff;
@@ -405,7 +397,7 @@ body {
 .lb-name   { flex: 1; font-weight: 700; }
 .lb-score  { font-family: var(--font-display); font-weight: 800; color: var(--clr-orange); font-size: 1.1rem; }
 
-/* ── PARENT DASHBOARD ── */
+
 .parent-section { padding: 8px 0; }
 .parent-section h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 14px; color: var(--clr-purple); }
 .progress-card {
@@ -423,7 +415,7 @@ body {
 .time-limit-section input[type="range"] { width: 100%; accent-color: var(--clr-purple); }
 .time-display { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--clr-purple); }
 
-/* ── REWARD OVERLAY ── */
+
 .reward-overlay {
   position: fixed; inset: 0; z-index: 500;
   background: rgba(0,0,0,0.35);
@@ -441,7 +433,7 @@ body {
 .reward-emoji { font-size: 5rem; animation: wiggle 0.5s ease; }
 .reward-text  { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--clr-purple); margin-top: 12px; }
 
-/* ── TIME WARNING ── */
+
 .time-warning {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
   background: var(--clr-coral);
@@ -455,9 +447,7 @@ body {
   animation: slideUpFade 0.4s ease;
 }
 
-/* ============= GAME-SPECIFIC STYLES ============= */
 
-/* COLOR GAME */
 .color-options { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 20px 0; }
 .color-btn {
   width: 120px; height: 120px;
@@ -484,7 +474,7 @@ body {
   animation: pulseGlow 2s ease-in-out infinite;
 }
 
-/* SHAPE GAME */
+
 .shape-options { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0; }
 .shape-btn {
   width: 130px; height: 130px;
@@ -508,7 +498,6 @@ body {
 }
 .shape-target svg { width: 110px; height: 110px; filter: drop-shadow(0 4px 12px rgba(155,89,245,0.3)); }
 
-/* MEMORY GAME */
 .memory-grid {
   display: grid;
   gap: 12px;
@@ -546,7 +535,7 @@ body {
 .mem-card.matched .mem-card-back { border-color: var(--clr-success); background: #eafaf1; }
 .mem-card.matched .mem-card-inner { animation: matchedPop 0.4s ease; }
 
-/* OBJECT GAME */
+
 .object-options { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 16px 0; }
 .object-btn {
   background: #fff;
@@ -571,11 +560,11 @@ body {
 .object-target .obj-prompt-emoji { font-size: 4.5rem; display: block; margin-bottom: 8px; }
 .object-target .obj-prompt-text  { font-size: 1rem; color: var(--clr-muted); font-weight: 600; }
 
-/* CORRECT / WRONG border flash */
+
 .correct-flash { border-color: var(--clr-success) !important; background: #d4fde8 !important; animation: flashCorrect 0.5s ease; }
 .wrong-flash   { border-color: var(--clr-danger)  !important; background: #fde8e8 !important; animation: flashWrong 0.5s ease; }
 
-/* ============= RESPONSIVE ============= */
+
 @media (max-width: 600px) {
   .screen-inner { padding: 24px 18px; }
   .activity-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
