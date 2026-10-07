@@ -1,8 +1,4 @@
-/**
- * database/setup.js
- * Run once: node database/setup.js
- * Seeds demo data into MongoDB for testing.
- */
+
 require('dotenv').config({ path: '../backend/.env' });
 const mongoose = require('mongoose');
 
@@ -11,7 +7,7 @@ async function seed() {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/autsera_land');
     console.log('✅ Connected to MongoDB');
 
-    // Just verify collections exist — Mongoose creates them on first write
+    
     const collections = await mongoose.connection.db.listCollections().toArray();
     console.log('Collections:', collections.map(c => c.name).join(', ') || 'none yet (will be created on first use)');
     console.log('');
