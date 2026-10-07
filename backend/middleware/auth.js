@@ -1,6 +1,4 @@
-/**
- * middleware/auth.js — JWT verification middleware
- */
+
 const jwt  = require('jsonwebtoken');
 const User = require('../models/User');
 
