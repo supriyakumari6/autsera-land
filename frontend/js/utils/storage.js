@@ -1,7 +1,4 @@
-/**
- * storage.js — thin wrapper around localStorage
- * All data is stored under the "autsera_" namespace.
- */
+
 const Storage = (() => {
   const NS = 'autsera_';
 
