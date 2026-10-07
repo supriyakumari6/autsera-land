@@ -1,57 +1,72 @@
-# 🚀 Deploying Autsera Land (aut_la2)
+# Autsera Land
 
-## ⚡ First: run it locally (run it on your computer — no accounts, no MongoDB install)
+A game for children, with a parent zone for tracking progress and play-time limits.
 
-1. Install **Node.js (LTS)** from https://nodejs.org if you don't have it.
-2. **Windows:** double-click **`start.bat`**  ·  **Mac/Linux:** run `./start.sh`
-   (first run installs packages and downloads a built-in database once, ~150 MB — needs internet, takes a few minutes)
-3. When the window says `🚀 Autsera Land is running!`, open **http://localhost:5000**
-   (VS Code Live Server on port 5500 also works — but keep the start.bat window open).
+## Tech stack
 
-**Seeing "The game server is not running"?** The start.bat window is closed or showed an error. Start it again and read the message in that window.
-Data is saved in `backend/.data`, so accounts and scores survive restarts. Delete that folder to start fresh.
+| Part | Technology | Hosted on |
+|   ---|         ---|        ---|
+| Frontend | HTML, CSS, JavaScript | Netlify |
+| Backend | Node.js, Express.js (REST API, JWT auth) | Render |
+| Database | MongoDB Atlas (via Mongoose) | MongoDB Atlas |
 
----
+The frontend calls the backend API, and the backend reads and writes to MongoDB Atlas.
 
+## Run locally
 
-Three pieces: **MongoDB Atlas** (database) → **Render** (backend API) → **Netlify** (frontend). All have free tiers.
+1. Install [Node.js LTS](https://nodejs.org).
+2. Start the server:
+   - Windows: double-click `start.bat`
+3. Open http://localhost:5000
 
-## 1. Database — MongoDB Atlas
-1. Create a free account at https://www.mongodb.com/atlas and create a free **M0** cluster.
-2. **Database Access** → add a user (username + password).
-3. **Network Access** → add IP `0.0.0.0/0` (allow from anywhere — required for Render's changing IPs).
-4. **Connect → Drivers** → copy the connection string and put your database name in it:
-   `mongodb+srv://USER:PASSWORD@cluster0.xxxxx.mongodb.net/autsera_land`
+The first run installs packages and downloaded a built-in database (~150 MB), so it needs internet and takes a few minutes. Keep the start window open while playing.
 
-## 2. Backend — Render
-1. Push the **whole `aut_la` folder** to a GitHub repo (the `.gitignore` already keeps `.env` and `node_modules` out).
-2. On https://render.com → **New → Web Service** → pick the repo.
-3. Settings: **Root Directory** `backend` · **Build Command** `npm install` · **Start Command** `npm start`
-4. **Environment Variables**:
-   | Name | Value |
-   |---|---|
-   | `MONGO_URI` | your Atlas string from step 1 |
-   | `JWT_SECRET` | a long random string (`node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`) |
-   | `CLIENT_ORIGIN` | `https://autseraland.netlify.app` |
-5. Deploy. Open `https://YOUR-SERVICE.onrender.com` — **the game itself opens there** (the backend also serves the frontend), and `/api/health` shows `Autsera Land API is running`. You can stop here; Netlify is optional.
+Data is saved in `backend/.data`. 
 
-> Free Render services sleep when idle; the first request after a break can take ~30–60 s. The game pings the server on page load to wake it.
-
-## 3. Frontend on Netlify (optional)
-1. Open `frontend/js/config.js` and set `PRODUCTION_API_URL` to your Render address (no trailing slash):
-   ```js
-   PRODUCTION_API_URL: 'https://YOUR-SERVICE.onrender.com',
-   ```
-2. In Netlify → **Deploys**, drag the **`frontend` folder** (the one with `index.html` directly inside) onto the drop box.
-3. Open https://autseraland.netlify.app and hard-refresh (Ctrl+Shift+R).
-
-## Run locally with your own MongoDB / Atlas instead
+To use your own MongoDB instead:
 ```bash
-cd backend && npm install && cp .env.example .env   # in .env set MONGO_URI (+ JWT_SECRET)
-npm start                                            # game + API on http://localhost:5000
+cd backend
+npm install
+cp .env.example .env    # Where we set MONGO_URI and JWT_SECRET
+npm start
 ```
 
-## Quick test checklist
-- Register a child → pick avatar → play a game → score appears on 🏆 Leaderboard
-- Open the site on a **second device/browser**, register another child → both appear on the same leaderboard
-- Parent Zone → register → Progress tab lists children → set a time limit
+## Deploy
+
+All three services have free tiers.
+
+### 1. Database: MongoDB Atlas
+1. Create a free M0 cluster.
+2. Database Access: add a user.
+3. Network Access: allow `0.0.0.0/0` (Render's IPs change).
+4. Copy the connection string and add the database name:
+   `mongodb+srv://USER:PASSWORD@cluster0.xxxxx.mongodb.net/autsera_land`
+
+### 2. Backend: Render
+1. Push the project to GitHub.
+2. On Render, create a **Web Service** from the repo.
+3. Set Root Directory to `backend`, Build Command to `npm install`, Start Command to `npm start`.
+4. Add environment variables:
+
+   | Name | Value |
+   |---|---|
+   | `MONGO_URI` | your Atlas string |
+   | `JWT_SECRET` | a long random string |
+   | `CLIENT_ORIGIN` | `https://autseraland.netlify.app` |
+
+5. Deploy. `/api/health` confirms the API is running.
+
+
+### 3. Frontend: Netlify
+1. In `frontend/js/config.js`, set `PRODUCTION_API_URL` to your Render URL (no trailing slash).
+2. On Netlify, connect the GitHub repo and set the publish directory to `frontend` (or drag the `frontend` folder into the Deploys page).
+3. Hard refresh the site with `Ctrl+Shift+R`.
+
+### Updating the live site
+Push to GitHub and both Render and Netlify redeploy automatically:
+```bash
+git add .
+git commit -m "Your message"
+git push
+```
+
