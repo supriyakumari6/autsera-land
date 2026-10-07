@@ -1,6 +1,4 @@
-/**
- * parentControl.js — Parent login + dashboard + child play-time limit (backed by the API)
- */
+
 const ParentControl = (() => {
 
   let _busy = false;
@@ -20,7 +18,7 @@ const ParentControl = (() => {
     showDashboard('progress');
   }
 
-  // ── REGISTER PARENT ──
+  
   async function register() {
     if (_busy) return;
     const name  = document.getElementById('preg-name').value.trim();
@@ -39,7 +37,7 @@ const ParentControl = (() => {
     } finally { _busy = false; }
   }
 
-  // ── LOGIN PARENT ──
+  
   async function login() {
     if (_busy) return;
     const email = document.getElementById('parent-email').value.trim().toLowerCase();
@@ -56,13 +54,13 @@ const ParentControl = (() => {
     } finally { _busy = false; }
   }
 
-  // ── LOGOUT PARENT ──
+
   function logout() {
     Storage.remove('parent_token');
     App.goTo('screen-home');
   }
 
-  // ── TABS ──
+  
   function showTab(tab) {
     document.querySelectorAll('.parent-tabs .tab-btn').forEach(b => {
       b.classList.toggle('active', b.getAttribute('onclick').includes(tab));
@@ -154,7 +152,7 @@ const ParentControl = (() => {
     }
   }
 
-  // ── SESSION TIMER (child playing) — counted per child, per day ──
+  
   let _interval = null;
   let _runId    = 0;
 
@@ -166,9 +164,9 @@ const ParentControl = (() => {
 
     let limitMin = 30;
     try { limitMin = (await Api.get('/api/settings')).dailyLimitMinutes || 30; } catch { /* keep default */ }
-    if (run !== _runId) return;                        // a newer timer started meanwhile
+    if (run !== _runId) return;                        
 
-    const day      = new Date().toLocaleDateString('en-CA');          // YYYY-MM-DD → resets every day
+    const day      = new Date().toLocaleDateString('en-CA');          
     const key      = `session_${user.id}_${day}`;
     const limitSec = limitMin * 60;
     let seconds    = Storage.get(key, 0);
