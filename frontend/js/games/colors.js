@@ -1,6 +1,4 @@
-/**
- * games/colors.js — Color Identification Game
- */
+
 const ColorGame = (() => {
 
   const ALL_COLORS = [
@@ -63,14 +61,14 @@ const ColorGame = (() => {
   function check(selected) {
     const btns = document.querySelectorAll('.color-btn');
     if (selected === _target.name) {
-      // flash correct
+      
       btns.forEach(b => { if (b.title === selected) b.classList.add('correct-flash'); });
       Game.correctAnswer();
     } else {
       btns.forEach(b => { if (b.title === selected) b.classList.add('wrong-flash'); });
       Game.wrongAnswer();
     }
-    // disable all buttons
+    
     btns.forEach(b => b.disabled = true);
   }
 
