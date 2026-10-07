@@ -1,11 +1,4 @@
-/**
- * server.js — starts Autsera Land: picks a database, then listens.
- *
- * Database choice (first match wins):
- *   1. MONGO_URI is set  → use that (MongoDB Atlas, or your own MongoDB)       ← use this when deployed
- *   2. otherwise         → start a private MongoDB automatically, saved in backend/.data
- *                          (no MongoDB install or account needed; one-time ~150 MB download)
- */
+
 require('dotenv').config();
 const fs       = require('fs');
 const path     = require('path');
@@ -22,16 +15,16 @@ function die(lines) {
 }
 
 async function resolveDatabase() {
-  // 1) Real database from the environment (production)
+  
   if (process.env.MONGO_URI) {
     if (!process.env.JWT_SECRET)
       die(['JWT_SECRET is missing.', 'Set it next to MONGO_URI (a long random string).']);
     return { uri: process.env.MONGO_URI, mode: 'your MongoDB (MONGO_URI)' };
   }
 
-  // 2) Zero-setup local database
+  
   fs.mkdirSync(DATA_DIR, { recursive: true });
-  if (!process.env.JWT_SECRET) {                          // keep the same secret between restarts
+  if (!process.env.JWT_SECRET) {                          
     const f = path.join(DATA_DIR, 'jwt-secret');
     if (!fs.existsSync(f)) fs.writeFileSync(f, crypto.randomBytes(48).toString('hex'));
     process.env.JWT_SECRET = fs.readFileSync(f, 'utf8').trim();
