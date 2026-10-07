@@ -1,6 +1,4 @@
-/**
- * app.js — Screen routing, confetti, reward overlay
- */
+
 const App = (() => {
   let _current = 'screen-home';
 
@@ -19,7 +17,7 @@ const App = (() => {
 
   function current() { return _current; }
 
-  /* ── CONFETTI ── */
+  
   function confetti(count = 60) {
     const colors = ['#FF6B6B','#FFE066','#9B59F5','#3ECFB2','#FF78C4','#4A90D9','#FF9F43'];
     for (let i = 0; i < count; i++) {
@@ -38,7 +36,7 @@ const App = (() => {
     }
   }
 
-  /* ── REWARD OVERLAY ── */
+  
   function showReward(emoji, text, duration = 2000) {
     const overlay = document.getElementById('reward-overlay');
     document.getElementById('reward-emoji').textContent = emoji;
@@ -47,14 +45,14 @@ const App = (() => {
     setTimeout(() => overlay.classList.add('hidden'), duration);
   }
 
-  /* ── TIME WARNING BANNER ── */
+  
   function showTimeWarning() {
     const el = document.getElementById('time-warning');
     el.classList.remove('hidden');
     setTimeout(() => el.classList.add('hidden'), 5000);
   }
 
-  /* ── SERVER STATUS BANNER (only shown when the server can't be reached) ── */
+  
   async function checkServer() {
     let bar = document.getElementById('server-banner');
     const ok = await Api.ping();
@@ -76,15 +74,15 @@ const App = (() => {
     return false;
   }
 
-  /* ── INIT ── */
+ 
   function init() {
     Sound.init();
-    checkServer();                                // wakes a sleeping server + warns if it is unreachable
+    checkServer();                                
     const user = Storage.get('current_user');
     if (user && Storage.get('token')) {
       Auth.refreshPlayerInfo();
       goTo('screen-activities');
-      Auth.syncProfile();                         // logs out if the saved login expired
+      Auth.syncProfile();                         
     } else {
       goTo('screen-home');
     }
