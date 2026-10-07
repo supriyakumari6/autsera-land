@@ -1,6 +1,4 @@
-/**
- * games/memory.js — Memory Card Flip Game
- */
+
 const MemoryGame = (() => {
 
   const EMOJIS = [
@@ -32,7 +30,7 @@ const MemoryGame = (() => {
     _flipped   = [];
     _locked    = false;
 
-    // Build pairs
+    
     const chosen = _shuffle([...EMOJIS]).slice(0, cfg.pairs);
     _cards = _shuffle([...chosen, ...chosen]).map((e, i) => ({ id: i, emoji: e, flipped: false, matched: false }));
 
@@ -46,7 +44,7 @@ const MemoryGame = (() => {
         <div class="memory-grid ${level}" id="memory-grid">${_buildCards()}</div>
       </div>`;
 
-    // Attach listeners
+    
     document.querySelectorAll('.mem-card').forEach(card => {
       card.addEventListener('click', () => flipCard(parseInt(card.dataset.id)));
     });
@@ -108,7 +106,7 @@ const MemoryGame = (() => {
   }
 
   function _onComplete() {
-    // Score based on attempts (fewer = more points)
+    
     const ideal = _totalPairs;
     const extra = Math.max(0, _attempts - ideal);
     const bonus = Math.max(0, 30 - extra * 2);
