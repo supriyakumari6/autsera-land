@@ -1,7 +1,4 @@
-/**
- * sound.js — Web Audio API–based sound effects
- * No external files needed; all sounds are synthesised.
- */
+
 const Sound = (() => {
   let ctx = null;
   let enabled = Storage.get('sound_enabled', true);
