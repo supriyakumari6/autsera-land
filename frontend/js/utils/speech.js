@@ -1,6 +1,4 @@
-/**
- * speech.js — Text-to-Speech using Web Speech API
- */
+
 const Speech = (() => {
   const synth = window.speechSynthesis || null;
   let enabled = Storage.get('speech_enabled', true);
