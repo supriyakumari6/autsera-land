@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<!-- ===== FLOATING BACKGROUND SHAPES ===== -->
+
 <div class="bg-shapes" aria-hidden="true">
   <div class="bg-shape s1"></div>
   <div class="bg-shape s2"></div>
@@ -19,13 +19,12 @@
   <div class="bg-shape s5"></div>
 </div>
 
-<!-- ===== SOUND TOGGLE ===== -->
 <button id="soundToggle" class="sound-btn" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
 
-<!-- ===== SCREENS WRAPPER ===== -->
+
 <div id="app">
 
-  <!-- ── SCREEN 1: SPLASH / HOME ── -->
+  
   <div class="screen active" id="screen-home">
     <div class="home-content">
       <div class="logo-area bounce-in">
@@ -45,7 +44,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 2: AUTH CHOICE ── -->
+  
   <div class="screen" id="screen-auth-choice">
     <div class="screen-inner">
       <button class="back-btn" onclick="App.goTo('screen-home')">← Back</button>
@@ -63,7 +62,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 3: CHILD LOGIN ── -->
+  
   <div class="screen" id="screen-login">
     <div class="screen-inner narrow">
       <button class="back-btn" onclick="App.goTo('screen-auth-choice')">← Back</button>
@@ -82,7 +81,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 4: REGISTER ── -->
+  
   <div class="screen" id="screen-register">
     <div class="screen-inner narrow">
       <button class="back-btn" onclick="App.goTo('screen-auth-choice')">← Back</button>
@@ -104,19 +103,19 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 5: AVATAR SELECTION ── -->
+  
   <div class="screen" id="screen-avatar">
     <div class="screen-inner">
       <h2 class="screen-title">Pick Your Avatar! 🎭</h2>
       <p class="screen-sub">Who do you want to be today?</p>
       <div class="avatar-grid" id="avatar-grid">
-        <!-- filled by JS -->
+        
       </div>
       <button class="btn btn-primary" id="avatar-confirm-btn" onclick="Auth.confirmAvatar()" disabled>That's me! ✅</button>
     </div>
   </div>
 
-  <!-- ── SCREEN 6: ACTIVITY SELECTION ── -->
+  
   <div class="screen" id="screen-activities">
     <div class="screen-inner">
       <div class="top-bar">
@@ -154,7 +153,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 7: LEVEL SELECT ── -->
+  
   <div class="screen" id="screen-level-select">
     <div class="screen-inner">
       <button class="back-btn" onclick="App.goTo('screen-activities')">← Back</button>
@@ -179,7 +178,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 8: GAME SCREEN ── -->
+  
   <div class="screen" id="screen-game">
     <div class="game-header">
       <button class="btn btn-small" onclick="Game.pause()" id="pause-btn">⏸ Pause</button>
@@ -192,12 +191,12 @@
     </div>
     <div class="game-question" id="game-question"></div>
     <div class="game-area" id="game-area">
-      <!-- dynamic game content injected here -->
+      
     </div>
     <div class="game-feedback hidden" id="game-feedback"></div>
   </div>
 
-  <!-- ── SCREEN 9: PAUSE ── -->
+  
   <div class="screen" id="screen-pause">
     <div class="screen-inner narrow center-all">
       <div class="pause-icon">⏸️</div>
@@ -208,7 +207,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 10: SCORE / RESULT ── -->
+  
   <div class="screen" id="screen-score">
     <div class="screen-inner narrow center-all">
       <div id="score-animation" class="score-animation"></div>
@@ -222,7 +221,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 11: LEADERBOARD ── -->
+  
   <div class="screen" id="screen-leaderboard">
     <div class="screen-inner">
       <button class="back-btn" onclick="App.goTo('screen-activities')">← Back</button>
@@ -238,7 +237,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 12: PARENT LOGIN ── -->
+  
   <div class="screen" id="screen-parent-login">
     <div class="screen-inner narrow">
       <button class="back-btn" onclick="App.goTo('screen-home')">← Back</button>
@@ -257,7 +256,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 13: PARENT REGISTER ── -->
+  
   <div class="screen" id="screen-parent-register">
     <div class="screen-inner narrow">
       <button class="back-btn" onclick="App.goTo('screen-parent-login')">← Back</button>
@@ -279,7 +278,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 14: PARENT DASHBOARD ── -->
+  
   <div class="screen" id="screen-parent-dashboard">
     <div class="screen-inner">
       <div class="top-bar">
@@ -295,9 +294,9 @@
     </div>
   </div>
 
-</div><!-- end #app -->
+</div>
 
-<!-- ===== OVERLAY: REWARD ANIMATION ===== -->
+
 <div id="reward-overlay" class="reward-overlay hidden" aria-live="polite">
   <div class="reward-content">
     <div class="reward-emoji" id="reward-emoji"></div>
@@ -305,12 +304,12 @@
   </div>
 </div>
 
-<!-- ===== OVERLAY: TIME LIMIT WARNING ===== -->
+
 <div id="time-warning" class="time-warning hidden">
   <p>⏰ Your play time is almost up!</p>
 </div>
 
-<!-- ===== SCRIPTS ===== -->
+
 <script src="js/config.js"></script>
 <script src="js/utils/storage.js"></script>
 <script src="js/utils/escape.js"></script>
