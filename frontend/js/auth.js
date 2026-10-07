@@ -1,6 +1,4 @@
-/**
- * auth.js — Child registration, login, avatar (backed by the API)
- */
+
 const Auth = (() => {
 
   const AVATARS = [
@@ -31,7 +29,7 @@ const Auth = (() => {
     setTimeout(() => el.classList.add('hidden'), 3500);
   }
 
-  // ── REGISTER ──
+  
   async function register() {
     if (_busy) return;
     const name = document.getElementById('reg-name').value.trim();
@@ -55,7 +53,7 @@ const Auth = (() => {
     } finally { _busy = false; }
   }
 
-  // ── LOGIN ──
+  
   async function login() {
     if (_busy) return;
     const name = document.getElementById('login-name').value.trim();
@@ -77,7 +75,7 @@ const Auth = (() => {
     } finally { _busy = false; }
   }
 
-  // ── AVATAR GRID ──
+  
   function buildAvatarGrid() {
     _selectedAvatar = null;
     document.getElementById('avatar-confirm-btn').disabled = true;
@@ -121,7 +119,7 @@ const Auth = (() => {
     }, 2400);
   }
 
-  // ── LOGOUT ──
+  
   function logout() {
     Storage.remove('token');
     Storage.remove('current_user');
@@ -130,7 +128,7 @@ const Auth = (() => {
     App.goTo('screen-home');
   }
 
-  // ── SCORES (saved on the server) ──
+  
   async function saveScore(gameType, score, level) {
     if (!Storage.get('token')) return;
     try {
@@ -143,7 +141,7 @@ const Auth = (() => {
     }
   }
 
-  // Re-check the saved login with the server (token may have expired)
+  
   async function syncProfile() {
     const user = getCurrentUser();
     if (!user || !Storage.get('token')) return;
@@ -155,9 +153,9 @@ const Auth = (() => {
     }
   }
 
-  // ── HELPERS ──
+  
   function _setCurrentUser(user) {
-    Storage.set('current_user', user);   // display info only — never the password
+    Storage.set('current_user', user);   
     refreshPlayerInfo();
   }
 
