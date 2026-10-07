@@ -1,6 +1,4 @@
-/**
- * games/objects.js — Object Recognition Game
- */
+
 const ObjectGame = (() => {
 
   const CATEGORIES = {
@@ -60,7 +58,7 @@ const ObjectGame = (() => {
   let _target = null;
 
   function render(level) {
-    // Pick a random category
+    
     const catKeys = Object.keys(CATEGORIES);
     const catKey  = catKeys[Math.floor(Math.random() * catKeys.length)];
     const pool    = CATEGORIES[catKey];
