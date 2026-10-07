@@ -1,6 +1,4 @@
-/**
- * timer.js — reusable countdown / stopwatch
- */
+
 const Timer = (() => {
   let interval = null;
   let elapsed  = 0;
@@ -11,7 +9,7 @@ const Timer = (() => {
   function start(opts = {}) {
     stop();
     elapsed = opts.startAt || 0;
-    limit   = opts.limit   || null;   // seconds
+    limit   = opts.limit   || null;   
     onTick  = opts.onTick  || null;
     onEnd   = opts.onEnd   || null;
 
@@ -24,7 +22,7 @@ const Timer = (() => {
 
   function stop()  { clearInterval(interval); interval = null; }
   function pause() { stop(); }
-  function resume(opts = {}) { start({ limit, onTick, onEnd, ...opts, startAt: elapsed }); }  // keeps the countdown + timeout
+  function resume(opts = {}) { start({ limit, onTick, onEnd, ...opts, startAt: elapsed }); }  
   function reset() { stop(); elapsed = 0; }
   function getElapsed() { return elapsed; }
 
