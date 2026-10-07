@@ -1,13 +1,4 @@
-/**
- * api.js — talks to the Autsera Land backend (Node + MongoDB)
- *
- *   Api.get('/api/progress', 'child')
- *   Api.post('/api/auth/login', { name, password })
- *   Api.patch('/api/parent/settings', { dailyLimitMinutes: 40 }, 'parent')
- *
- * The last argument says whose login token to send: 'child' | 'parent' | (none)
- * Passwords are never stored in the browser — only the login token.
- */
+
 class ApiError extends Error {
   constructor(message, status) { super(message); this.status = status; }
 }
@@ -18,10 +9,7 @@ const Api = (() => {
   const isLocalHost = location.protocol === 'file:' || host === 'localhost' || host === '127.0.0.1' || host === '::1';
   const localPort   = String(cfg.LOCAL_API_PORT || 5000);
 
-  // Where is the server?
-  //   same address as the page  → ''            (page was opened from the backend itself)
-  //   local, other port / file  → http://<host>:5000
-  //   deployed                  → PRODUCTION_API_URL, or same address if left empty
+  
   const BASE = (() => {
     if (isLocalHost) {
       if (location.port === localPort) return '';
@@ -58,7 +46,7 @@ const Api = (() => {
     return data;
   }
 
-  // true if the server answers (also wakes a sleeping free-tier server)
+  
   async function ping() {
     try { const r = await fetch(BASE + '/api/health'); return r.ok; }
     catch { return false; }
