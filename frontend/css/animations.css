@@ -1,6 +1,4 @@
-/* =====================================================
-   AUTSERA LAND — animations.css
-===================================================== */
+
 
 @keyframes screenIn {
   from { opacity: 0; transform: translateY(28px) scale(0.97); }
