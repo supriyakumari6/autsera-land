@@ -1,6 +1,4 @@
-/**
- * leaderboard.js — shared leaderboard (loaded from the server)
- */
+
 const Leaderboard = (() => {
 
   async function show(tab = 'all') {
