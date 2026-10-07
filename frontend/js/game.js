@@ -1,13 +1,10 @@
-/**
- * game.js — Central game controller
- * Coordinates activity selection, levels, scoring, lives, timer, feedback
- */
+
 const Game = (() => {
 
-  // ── State ──
+
   let state = {
-    activity : null,   // 'colors' | 'shapes' | 'memory' | 'objects'
-    level    : null,   // 'easy' | 'medium' | 'hard'
+    activity : null,   
+    level    : null,   
     score    : 0,
     lives    : 3,
     streak   : 0,
@@ -23,7 +20,7 @@ const Game = (() => {
     hard:   { questions: 14, timer: 20,   lives: 2, scorePerQ: 20 },
   };
 
-  // Memory is one big board per round, so it gets 2 rounds, no countdown and its own max score
+  
   const MEMORY_PAIRS  = { easy: 6, medium: 8, hard: 10 };
   const MEMORY_ROUNDS = 2;
   const isMemory = () => state.activity === 'memory';
@@ -33,7 +30,7 @@ const Game = (() => {
       ? MEMORY_ROUNDS * (MEMORY_PAIRS[level] * 10 + 30)
       : LEVEL_CONFIG[level].questions * LEVEL_CONFIG[level].scorePerQ;
 
-  // ── Activity start ──
+ 
   function startActivity(activity) {
     state.activity = activity;
     document.getElementById('level-select-title').textContent =
@@ -57,7 +54,7 @@ const Game = (() => {
     App.goTo('screen-game');
     Sound.levelUp();
 
-    // Start timer if applicable
+    
     if (countdownFor(level)) {
       Timer.start({
         onTick: (s) => { state.elapsed = s; updateTimer(); },
@@ -72,7 +69,7 @@ const Game = (() => {
     Speech.speak(`${level} level! Let's go!`);
   }
 
-  // ── QUESTION FLOW ──
+  
   function nextQuestion() {
     if (state.question >= state.maxQ) { endGame(); return; }
     state.question++;
@@ -87,7 +84,7 @@ const Game = (() => {
     }
   }
 
-  // ── ANSWER HANDLERS ──
+  
   function correctAnswer(points) {
     state.streak++;
     const bonus = state.streak >= 3 ? Math.floor(LEVEL_CONFIG[state.level].scorePerQ * 0.5) : 0;
@@ -112,17 +109,17 @@ const Game = (() => {
     setTimeout(nextQuestion, 1600);
   }
 
-  // ── END GAME ──
+  
   function endGame() {
     Timer.stop();
     const maxPts = maxPoints(state.level);
     const pct    = maxPts > 0 ? Math.round((state.score / maxPts) * 100) : 0;
     const stars  = pct >= 80 ? 3 : pct >= 50 ? 2 : 1;
 
-    // save score on the server (history is stored there too)
+    
     Auth.saveScore(state.activity, state.score, state.level);
 
-    // show score screen
+    
     const emoji  = stars === 3 ? '🏆' : stars === 2 ? '🌟' : '😊';
     const title  = stars === 3 ? 'Amazing!!! 🎉' : stars === 2 ? 'Well Done! 👏' : 'Good Try! 😊';
     document.getElementById('score-animation').textContent = emoji;
@@ -144,7 +141,7 @@ const Game = (() => {
     Speech.speak(title.replace('!!!', '').replace('!', ''));
   }
 
-  // ── HUD ──
+  
   function updateHUD() {
     document.getElementById('stat-score').textContent = `⭐ ${state.score}`;
     document.getElementById('stat-lives').textContent = '❤️'.repeat(state.lives) + '🖤'.repeat(Math.max(0, 3 - state.lives));
@@ -159,7 +156,7 @@ const Game = (() => {
     }
   }
 
-  // ── FEEDBACK ──
+  
   function showFeedback(correct, msg) {
     const el = document.getElementById('game-feedback');
     el.className = `game-feedback ${correct ? 'correct' : 'wrong'}`;
@@ -184,7 +181,7 @@ const Game = (() => {
     }
   }
 
-  // ── PAUSE / RESUME ──
+  
   function pause() {
     state.paused = true;
     Timer.pause();
@@ -205,7 +202,7 @@ const Game = (() => {
   }
   function playAgain() { setLevel(state.level); }
 
-  // ── GETTERS for sub-games ──
+ 
   function getLevel()   { return state.level; }
   function getActivity(){ return state.activity; }
 
