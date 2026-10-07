@@ -1,6 +1,6 @@
 # Autsera Land
 
-A game for children, with a parent zone for tracking progress and play-time limits.
+Autsera Land combines learning games with parent monitoring: progress saved in the cloud and a daily time limit set by the parent. It's free, ad-free, and needs no download.
 
 Live- "https://autsera-land.onrender.com"
 
