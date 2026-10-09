@@ -1,6 +1,4 @@
-/**
- * routes/auth.js — POST /api/auth/register, /login, PATCH /avatar
- */
+
 const express = require('express');
 const jwt     = require('jsonwebtoken');
 const User    = require('../models/User');
@@ -16,7 +14,7 @@ function publicUser(u) {
   return { id: u._id, name: u.name, age: u.age, avatar: u.avatar, totalScore: u.totalScore, scores: u.scores };
 }
 
-// POST /api/auth/register
+
 router.post('/register', async (req, res) => {
   try {
     const name     = String(req.body.name || '').trim();
@@ -38,7 +36,7 @@ router.post('/register', async (req, res) => {
   } catch (err) { handleError(res, err); }
 });
 
-// POST /api/auth/login
+
 router.post('/login', async (req, res) => {
   try {
     const name     = String(req.body.name || '').trim().toLowerCase();
@@ -53,7 +51,7 @@ router.post('/login', async (req, res) => {
   } catch (err) { handleError(res, err); }
 });
 
-// PATCH /api/auth/avatar
+
 router.patch('/avatar', protect, async (req, res) => {
   try {
     const { avatar } = req.body;

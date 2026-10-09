@@ -1,6 +1,4 @@
-/**
- * routes/levels.js — GET /api/levels
- */
+
 const express = require('express');
 const router  = express.Router();
 

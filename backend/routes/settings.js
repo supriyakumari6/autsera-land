@@ -1,7 +1,4 @@
-/**
- * routes/settings.js — GET /api/settings (public)
- * Lets the child's game read the daily play-time limit a parent has set.
- */
+
 const express = require('express');
 const Setting = require('../models/Setting');
 const { handleError } = require('../utils/respond');

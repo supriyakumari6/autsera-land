@@ -1,6 +1,4 @@
-/**
- * routes/parent.js — Parent login, register, settings, children progress
- */
+
 const express = require('express');
 const jwt     = require('jsonwebtoken');
 const Parent  = require('../models/Parent');

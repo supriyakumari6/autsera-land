@@ -1,8 +1,4 @@
-/**
- * routes/scores.js
- * POST /api/scores/save   — save a finished game
- * GET  /api/scores/leaderboard?game=all|colors|shapes|memory|objects
- */
+
 const express = require('express');
 const User    = require('../models/User');
 const { protect } = require('../middleware/auth');
