@@ -45,7 +45,7 @@ body {
   position: relative;
 }
 
-/* ── BACKGROUND SHAPES ── */
+
 .bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .bg-shape {
   position: absolute;
