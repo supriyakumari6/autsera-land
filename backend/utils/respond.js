@@ -1,6 +1,3 @@
-/**
- * utils/respond.js — consistent error responses (never leak internals)
- */
 function handleError(res, err) {
   if (err && err.name === 'ValidationError') {
     const first = Object.values(err.errors)[0];
