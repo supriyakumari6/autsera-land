@@ -68,7 +68,7 @@ All three services have free tiers.
 Push to GitHub and both Render and Netlify redeploy automatically:
 ```bash
 git add .
-git commit -m "Your message"
+git commit -m "save changes"
 git push
 ```
 
